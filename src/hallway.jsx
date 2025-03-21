@@ -3,36 +3,30 @@ import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 export default function Hallway() {
   return (
     <>
-      {/* Hallway Walls (box shapes) */}
-      <mesh position={[0, 4, -16]} receiveShadow>
-        <meshStandardMaterial color="gray" />
-        <Geometry>
-          <Base>
-            <boxGeometry args={[4, 12, 10]} />
-          </Base>
+      {/* Hallway Walls */}
+      <mesh position={[-31.5, 4, -32]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+      <meshStandardMaterial color='blue' />
 
-          {/* Subtract the arch from the center */}
-          <Subtraction position={[0, 0, 0]}>
+      <Geometry>
+        <Base>
+            <boxGeometry args={[6, 15, 15]} />
+        </Base>
+
+        <Subtraction position={[0, -2, 0]}>
             <Geometry>
-              <Base position={[0, 0, 0]}>
-                {/* Large box for hallway structure */}
-                <boxGeometry args={[4, 12, 10]} />
-              </Base>
-
-              {/* Create the arch using a cylinder */}
-              <Addition position={[0, 0, -5]}>
-                <cylinderGeometry args={[2, 2, 10, 32, 1, false, 0, Math.PI]} />
-              </Addition>
+                <Base position={[0, -2, 0]}>
+                    <boxGeometry args={[5.95, 8, 30]} />
+                </Base>
+                <Addition position={[0, 2, 0]} rotation={[Math.PI / 2, 0, 0]}>
+                    <cylinderGeometry args={[3, 3, 30, 32]} />
+                </Addition>
             </Geometry>
-          </Subtraction>
-        </Geometry>
-      </mesh>
-
-      {/* Floor of the Hallway */}
-      <mesh position={[0, -2, -16]} receiveShadow>
-        <boxGeometry args={[4, 0.1, 10]} />
-        <meshStandardMaterial color="darkgray" />
+        </Subtraction>
+    </Geometry>
+ 
       </mesh>
     </>
   );
 }
+
+
