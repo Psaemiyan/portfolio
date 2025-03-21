@@ -1,10 +1,10 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 
 
-export default function Scene() {
+export default function Entry() {
   return (
     <>
-      {/* Back wall */}
+      {/* Back Wall */}
       <mesh castShadow receiveShadow position={[0, 4, -16]}>
         <meshNormalMaterial />
         <Geometry>
@@ -28,11 +28,13 @@ export default function Scene() {
         </Geometry>
       </mesh>
 
-      {/* Side Walls */}
+      {/* Left Wall */}
       <mesh position={[-24, 4, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
         <boxGeometry args={[32, 15, 0.1]} />
         <meshStandardMaterial color="red" />
       </mesh>
+
+      {/* Right Wall */}
       <mesh position={[24, 4, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
         <boxGeometry args={[32, 15, 0.1]} />
         <meshStandardMaterial color="blue" />
