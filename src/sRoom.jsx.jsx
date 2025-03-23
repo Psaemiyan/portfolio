@@ -6,7 +6,7 @@ export default function SecondRoom() {
 
       {/* Side Wall*/}
       <mesh position={[-24, 4, -32]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
-            <meshNormalMaterial />
+            <meshBasicMaterial color='green' />
             <Geometry>
                 <Base>
                 <boxGeometry args={[32, 15, 0.1]} />

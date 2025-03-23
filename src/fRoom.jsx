@@ -6,7 +6,7 @@ export default function FirstRoom() {
     <>
       {/* Back Wall */}
       <mesh castShadow receiveShadow position={[0, 4, -16]}>
-        <meshNormalMaterial />
+        <meshBasicMaterial color='lilac' />
         <Geometry>
           <Base>
             <boxGeometry args={[48, 15, 0.1]} />
