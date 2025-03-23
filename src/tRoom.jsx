@@ -1,7 +1,7 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 
 
-export default function Education()
+export default function ThirdRoom()
 {
     return <>
 

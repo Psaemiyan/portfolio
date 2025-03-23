@@ -1,7 +1,7 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 
 
-export default function Entry() {
+export default function FirstRoom() {
   return (
     <>
       {/* Back Wall */}

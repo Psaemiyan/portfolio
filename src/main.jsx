@@ -4,10 +4,10 @@ import { OrbitControls } from '@react-three/drei'
 import { Perf } from 'r3f-perf'
 import './App.css'
 
-import Entry from './entry'
-import Experience from './experience'
+import FirstRoom from './fRoom'
+import SecondRoom from './sRoom.jsx'
 import Hallway from './hallway'
-import Education from './education'
+import ThirdRoom from './tRoom.jsx'
 
 createRoot(document.getElementById('root')).render(
   <Canvas
@@ -18,9 +18,9 @@ createRoot(document.getElementById('root')).render(
     <directionalLight position={[5, 5, 5]} castShadow intensity={1} />
     <Perf />
     <OrbitControls enablePan={true} />
-    <Entry />
-    <Experience />
+    <FirstRoom />
+    <SecondRoom />
     <Hallway />
-    <Education />
+    <ThirdRoom />
   </Canvas>
 )

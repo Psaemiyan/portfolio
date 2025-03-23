@@ -1,6 +1,6 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 
-export default function Experience() {
+export default function SecondRoom() {
   return (
     <>
 
