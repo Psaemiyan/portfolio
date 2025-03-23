@@ -7,6 +7,7 @@ import './App.css'
 import Entry from './entry'
 import Experience from './experience'
 import Hallway from './hallway'
+import Education from './education'
 
 createRoot(document.getElementById('root')).render(
   <Canvas
@@ -16,9 +17,10 @@ createRoot(document.getElementById('root')).render(
     <ambientLight intensity={1.5} />
     <directionalLight position={[5, 5, 5]} castShadow intensity={1} />
     <Perf />
-    <OrbitControls makeDefault />
+    <OrbitControls enablePan={true} />
     <Entry />
     <Experience />
     <Hallway />
+    <Education />
   </Canvas>
 )
