@@ -16,10 +16,9 @@ import Observer from './observer.jsx'
 createRoot(document.getElementById('root')).render(
   <Canvas
     shadows 
-    camera={{ position: [0, 3, 25], fov: 50 }}
+    camera={{ position: [0, 3, 25] }}
   >
     <ambientLight intensity={.5} />
-    {/* <directionalLight position={[5, 5, 5]} castShadow intensity={1} /> */}
     <Perf />
     <OrbitControls enablePan={true} />
     <FirstRoom />

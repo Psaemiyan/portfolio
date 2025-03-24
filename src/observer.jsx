@@ -1,23 +1,44 @@
-import * as THREE from 'three';
-import { useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
-
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
+import observerFragmentShader from './shaders/observer/fragment.glsl';
+import observerVertexShader from './shaders/observer/vertex.glsl';
 
 export default function Observer() {
-    const userRef = useRef();
-    let time = 0;
-    useFrame(() => {
-        if (userRef.current) {
-            time += 0.02;
-            userRef.current.position.y = Math.sin(time) * 0.2; 
-        }
-    });
+    const observerRef = useRef();
+
+    const vertices = new Float32Array([
+        // x, y, z for each vertex
+        -0.5,  0.5, 0,  // Top-left
+         0.5,  0.5, 0,  // Top-right
+        -0.5, -0.5, 0,  // Bottom-left
+         0.5, -0.5, 0,  // Bottom-right
+    ]);
+
+    const uvs = new Float32Array([
+        0, 1,  // Top-left
+        1, 1,  // Top-right
+        0, 0,  // Bottom-left
+        1, 0,  // Bottom-right
+    ]);
+
+    const indices = new Uint16Array([0, 1, 2, 2, 1, 3]);
+
+    const geometry = new THREE.BufferGeometry();
+    geometry.setAttribute('position', new THREE.BufferAttribute(vertices, 3));
+    geometry.setAttribute('uv', new THREE.BufferAttribute(uvs, 2)); 
+    geometry.setIndex(new THREE.BufferAttribute(indices, 1));
+
     return (
-        <group>
-            <mesh ref={userRef} position={[0, 1.5, 0]}>
-                <sphereGeometry args={[0.15, 32, 32]} />
-                <meshStandardMaterial emissive={new THREE.Color(0x33bbff)} emissiveIntensity={3} />
-            </mesh>
-        </group>
+      <mesh geometry={geometry}>
+        <shaderMaterial
+          ref={observerRef}
+          vertexShader={observerVertexShader}
+          fragmentShader={observerFragmentShader}
+          blending={THREE.AdditiveBlending}  
+          side={THREE.DoubleSide}          
+          transparent={true}                
+        />
+      </mesh>
     );
 }
