@@ -1,18 +1,22 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
+import { Color } from 'three';
 
 export default function SecondRoom() {
   return (
     <>
-
-      {/* Side Wall*/}
+      {/* Side Wall */}
       <mesh position={[-24, 4, -32]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
-            <meshBasicMaterial color='green' />
-            <Geometry>
-                <Base>
-                <boxGeometry args={[32, 15, 0.1]} />
-                </Base>
+        <meshStandardMaterial
+          color="darkslateblue"
+          emissive={new Color(0x1e2a47)}
+          emissiveIntensity={0.8}
+        />
+        <Geometry>
+          <Base>
+            <boxGeometry args={[32, 15, 0.1]} />
+          </Base>
 
-                <Subtraction position={[0, -2, 0]}>
+          <Subtraction position={[0, -2, 0]}>
             <Geometry>
               <Base position={[0, -2, 0]}>
                 <boxGeometry args={[6, 8, 0.2]} />
@@ -21,28 +25,40 @@ export default function SecondRoom() {
                 <cylinderGeometry args={[3, 3, 0.2, 32]} />
               </Addition>
             </Geometry>
-            </Subtraction>
-            </Geometry>
-        </mesh>
-
-
-        {/* B Wall */}
-        <mesh position={[0, 4, -48]}>
-            <boxGeometry args={[48, 15, 0.1]} />
-            <meshStandardMaterial color='pink' />
-        </mesh>
-
-        {/* R Wall */}
-      <mesh position={[24, 4, -32]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
-        <boxGeometry args={[32, 15, 0.1]} />
-        <meshStandardMaterial color="yellow" />
+          </Subtraction>
+        </Geometry>
       </mesh>
 
+      {/* B Wall */}
+      <mesh position={[0, 4, -48]}>
+        <boxGeometry args={[48, 15, 0.1]} />
+        <meshStandardMaterial
+          color="indigo"
+          emissive={new Color(0x260e6b)}
+          emissiveIntensity={0.9}
+        />
+      </mesh>
 
-        {/* Floor */}
+      {/* R Wall */}
+      <mesh position={[24, 4, -32]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
+        <meshStandardMaterial
+          color="midnightblue"
+          emissive={new Color(0x003d8e)}
+          emissiveIntensity={0.8}
+        />
+        <boxGeometry args={[32, 15, 0.1]} />
+      </mesh>
+
+      {/* Floor */}
       <mesh position={[0, -3.5, -32]} receiveShadow>
         <boxGeometry args={[48, 0.1, 32]} />
-        <meshStandardMaterial color="lightgray" />
+        <meshStandardMaterial
+          color="slategray"
+          emissive={new Color(0x1a2635)}
+          emissiveIntensity={0.4}
+          roughness={0.2}
+          metalness={0.7}
+        />
       </mesh>
     </>
   );
