@@ -25,7 +25,7 @@ export default function ThirdRoom()
         </Geometry>
     </mesh>
 
-    {/* front wall */}
+    {/* F Wall */}
     <mesh position={[-63, 4, -16]}>
       <meshBasicMaterial color='orange' />
       <Geometry>

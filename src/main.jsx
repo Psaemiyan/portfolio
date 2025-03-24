@@ -9,6 +9,7 @@ import SecondRoom from './sRoom.jsx'
 import Hallway from './hallway'
 import ThirdRoom from './tRoom.jsx'
 import Stairs from './stairs.jsx'
+import FourthRoom from './foRoom.jsx'
 
 createRoot(document.getElementById('root')).render(
   <Canvas
@@ -24,5 +25,6 @@ createRoot(document.getElementById('root')).render(
     <Hallway />
     <ThirdRoom />
     <Stairs />
+    <FourthRoom />
   </Canvas>
 )

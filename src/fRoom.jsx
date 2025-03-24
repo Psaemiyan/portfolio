@@ -4,7 +4,7 @@ import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 export default function FirstRoom() {
   return (
     <>
-      {/* Back Wall */}
+      {/* B Wall */}
       <mesh castShadow receiveShadow position={[0, 4, -16]}>
         <meshBasicMaterial color='lilac' />
         <Geometry>
@@ -28,13 +28,13 @@ export default function FirstRoom() {
         </Geometry>
       </mesh>
 
-      {/* Left Wall */}
+      {/* L Wall */}
       <mesh position={[-24, 4, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
         <boxGeometry args={[32, 15, 0.1]} />
         <meshStandardMaterial color="red" />
       </mesh>
 
-      {/* Right Wall */}
+      {/* R Wall */}
       <mesh position={[24, 4, 0]} rotation={[0, Math.PI / 2, 0]} receiveShadow>
         <boxGeometry args={[32, 15, 0.1]} />
         <meshStandardMaterial color="blue" />
