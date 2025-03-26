@@ -27,6 +27,6 @@ createRoot(document.getElementById('root')).render(
     <ThirdRoom />
     <Stairs />
     <FourthRoom />
-    <Observer />
+    {/* <Observer /> */}
   </Canvas>
 )
