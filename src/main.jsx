@@ -16,12 +16,12 @@ import Observer from './observer.jsx'
 createRoot(document.getElementById('root')).render(
   <Canvas
     shadows 
-    camera={{ position: [0, 3, 25] }}
+    camera={{ position: [0, 0, 0] }}
   >
     <ambientLight intensity={.5} />
     <Perf />
     <OrbitControls enablePan={true} />
-    <FirstRoom />
+    {/* <FirstRoom /> */}
     <SecondRoom />
     <Hallway />
     <ThirdRoom />

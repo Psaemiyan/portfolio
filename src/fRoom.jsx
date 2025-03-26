@@ -1,13 +1,31 @@
 import { Geometry, Base, Subtraction, Addition } from "@react-three/csg";
 import * as THREE from 'three'
-import { useMemo, useRef } from "react";
 import { Physics, RigidBody } from "@react-three/rapier";
-import { useFrame } from "@react-three/fiber";
+import { useState, useRef } from "react";
 
 
 export default function FirstRoom() {
-  const sphereGeometry = useMemo(() => new THREE.SphereGeometry(1, 32, 32), []);
-  const sphereRef = useRef();
+
+  const [targetHit, setTargetHit] = useState(false);
+  const ballRef = useRef();
+  const targetRef = useRef();
+
+  const launchBall = () => {
+    if (ballRef.current) {
+      console.log('clicked')
+    }
+  };
+
+  const checkCollision = () => {
+    if (ballRef.current && targetRef.current) {
+      const ballPosition = ballRef.current.translation();
+      const targetPosition = targetRef.current.translation();
+
+      if (ballPosition.distanceTo(targetPosition) < 2) {
+        setTargetHit(true);
+      }
+    }
+  };
 
   return (
     <Physics gravity={ [ 0, - 9.08, 0 ] }>
@@ -73,47 +91,39 @@ export default function FirstRoom() {
       </RigidBody>
 
 
+       {/* Target (Ball to hit) */}
+       <RigidBody type="fixed" ref={targetRef}>
+          <mesh position={[0, -2, -10]} receiveShadow>
+            <sphereGeometry args={[2, 32, 32]} />
+            <meshStandardMaterial
+              color="yellow"
+              emissive={new THREE.Color(0xffff00)}
+              emissiveIntensity={1}
+            />
+          </mesh>
+        </RigidBody>
 
-      <RigidBody colliders="ball" restitution={0.8}>
-      <mesh ref={sphereRef} position={[0, 10, 0]} scale={2.5} geometry={sphereGeometry}>
-        <meshStandardMaterial
-          emissive={new THREE.Color(0xff00ff)}  // Neon Pink
-          emissiveIntensity={2}
-        />
-      </mesh>
-      </RigidBody>
+        {/* Launchable Ball */}
+        <RigidBody ref={ballRef} colliders="ball" restitution={0.8}>
+          <mesh
+            position={[0, -2, 0]} 
+            onClick={launchBall} 
+            receiveShadow
+            castShadow
+          >
+            <sphereGeometry args={[1, 32, 32]} />
+            <meshStandardMaterial
+              color="red"
+              emissive={new THREE.Color(0xff0000)}
+              emissiveIntensity={1.5}
+            />
+          </mesh>
+        </RigidBody>
 
+      {checkCollision()}
 
-        <mesh position={[-4, 8, 0]} scale={2.5} geometry={sphereGeometry}>
-          <meshStandardMaterial
-            emissive={new THREE.Color(0x00ff00)}  // Neon Green
-            emissiveIntensity={2}
-          />
-        </mesh>
-  
-
-
-
-      <mesh position={[4, 8, 0]} scale={2.5} geometry={sphereGeometry}>
-        <meshStandardMaterial
-          emissive={new THREE.Color(0x00ffff)}  // Neon Cyan
-          emissiveIntensity={2}
-        />
-      </mesh>
-
-      <mesh position={[8, 10, 0]} scale={2.5} geometry={sphereGeometry}>
-        <meshStandardMaterial
-          emissive={new THREE.Color(0xffff00)}  // Neon Yellow
-          emissiveIntensity={2}
-        />
-      </mesh>
-
-      <mesh position={[-8, 12, 0]} scale={2.5} geometry={sphereGeometry}>
-        <meshStandardMaterial
-          emissive={new THREE.Color(0xff0000)}  // Neon Red
-          emissiveIntensity={2}
-        />
-      </mesh>
+      {/* Display success message if the target is hit */}
+      {targetHit && <textGeometry args={["Target Hit!", { font: 'Arial', size: 1, height: 0.1 }]} />}
 
     </group>
     </Physics>
